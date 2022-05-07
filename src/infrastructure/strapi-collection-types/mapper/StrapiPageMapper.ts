@@ -9,6 +9,8 @@ import { StrapiModel } from "../../Strapi/StrapiRestApi.model";
 import { StrapiPage } from "../model/StrapiPage";
 import { StrapiSectionStats } from "../../strapi-components/model/StrapiSectionStats.model";
 import { StrapiSectionStatsMapper } from "../../strapi-components/mapper/StrapiSectionStatsMapper";
+import { StrapiComponentSectionStory } from "../../strapi-components/model/StrapiComponentSectionStory.model";
+import { StrapiSectionStoryMapper } from "./StrapiSectionStoryMapper";
 
 export class StrapiPageMapper {
   public static toDomainEntity(strapiPage: StrapiModel<StrapiPage>): Page {
@@ -24,6 +26,7 @@ export class StrapiPageMapper {
       | StrapiSectionBannerCenter
       | StrapiSectionHero
       | StrapiSectionStats
+      | StrapiComponentSectionStory
     )[]
   ): Section<SectionBannerCenter | SectionHero>[] {
     return sections.map((section) => {
@@ -39,6 +42,10 @@ export class StrapiPageMapper {
         case "section.section-stats":
           return StrapiSectionStatsMapper.toDomainEntity(
             section as StrapiSectionStats
+          );
+        case "section.section-story":
+          return StrapiSectionStoryMapper.toDomainEntity(
+            section as StrapiComponentSectionStory
           );
         default:
           return [];

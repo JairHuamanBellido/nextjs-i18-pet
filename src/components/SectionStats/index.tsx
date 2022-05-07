@@ -32,10 +32,9 @@ export default function SectionStatsComponent({
             <Image
               src={media.url}
               alt={media.alternativeText}
-              width={"100%"}
-              height={"100%"}
               objectFit={"cover"}
               layout="fill"
+              priority={false}
             />
           </StyledWrapperImage>
         </StyledImageContainer>
@@ -47,7 +46,7 @@ export default function SectionStatsComponent({
           </StyledDescription>
           <StyledStatsList>
             {stats.map((e) => (
-              <StatsComponent key={e.id} {...e} />
+              <StatsComponent key={"stats-" + e.id} {...e} />
             ))}
           </StyledStatsList>
         </StyledContent>

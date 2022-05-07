@@ -20,7 +20,6 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
     GetPageService.execute(locale ?? "en", pathname)
   );
 
-
   const page = queryClient.getQueryData<Page>(pathname);
   const pageNotFound = page === undefined;
   if (pageNotFound) {
@@ -44,11 +43,11 @@ const Home = ({ page }: PageProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {page.sections.map((e: any) => {
+        {page.sections.map((e: any, idx: number) => {
           const target = appComponentMapper.find((d) => d.id === e.componentId);
           if (target !== undefined) {
             const { component: Section } = target;
-            return <Section key={e.id} {...e} />;
+            return <Section key={`section-${idx}`} {...e} />;
           }
           return null;
         })}

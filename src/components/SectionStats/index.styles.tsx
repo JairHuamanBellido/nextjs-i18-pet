@@ -18,13 +18,11 @@ export const StyledImageContainer = styled.div`
   position: relative;
   width: 50%;
 `;
-
 export const StyledWrapperImage = styled.div`
   width: 360px;
   height: 515px;
   position: relative;
 `;
-
 export const StyledDescription = styled.div`
   margin-top: ${({ theme }) => theme.spacing.xs};
 `;

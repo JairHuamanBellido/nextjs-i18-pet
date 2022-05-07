@@ -19,7 +19,12 @@ export default function Navbar() {
         <div className="flex h-full relative">
           <StyledNavigationList>
             {navigation.navigation_items.map((e) => (
-              <Link key={e.id} href={e.link.url} locale={locale} passHref>
+              <Link
+                key={`${e.title}-${e.id}`}
+                href={e.link.url}
+                locale={locale}
+                passHref
+              >
                 <StyledLink isSelected={isCurrentPathname(e.link.url)}>
                   {e.title}
                 </StyledLink>
