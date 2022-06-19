@@ -1,3 +1,5 @@
+import { LinkStory } from "./LinkStory.model";
+import { Media } from "./Media.model";
 import { People } from "./People.model";
 
 export interface Story {
@@ -5,4 +7,7 @@ export interface Story {
   readonly slogan: string;
   readonly body: string;
   readonly person: People;
+  readonly link_story: LinkStory;
+  readonly image: Media;
+  readonly slug: string;
 }

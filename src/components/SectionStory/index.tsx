@@ -1,5 +1,8 @@
 import Image from "next/image";
-import { SectionStory } from "../../domain/model/SectionStory.model";
+import { IButtonProps } from "../../domain/model/Button.model";
+import { Media } from "../../domain/model/Media.model";
+import { Story } from "../../domain/model/Story.model";
+import { ISectionTitle } from "../../domain/types/SectionTitle.model";
 import Button from "../Button";
 import MarkdownComponent from "../Markdown";
 import {
@@ -12,31 +15,34 @@ import {
   StyledAuthor,
   StyledButtonWrapper,
   StyledContainer,
-  StyledImageContainer,
   StyledSectionStory,
   StyledSlogan,
   StyledStoriesList,
   StyledWrapperImage,
 } from "./index.styles";
 
+export interface ISectionStory {
+  heading: ISectionTitle;
+  image: Media;
+  reverse: boolean;
+  button: IButtonProps;
+  stories: Story[];
+}
+export interface ISectionStoryComponent {
+  section_story: ISectionStory;
+}
 export default function SectionStoryComponent({
-  reverse,
-  body,
-  image,
-  stories,
-  tag,
-  button,
-  title,
-}: SectionStory) {
-  console.log(button);
+  section_story,
+}: ISectionStoryComponent) {
+  const { button, heading, image, reverse, stories } = section_story;
   return (
     <StyledSectionStory>
       <StyledSection>
         <StyledContainer isReverse={reverse}>
           <StyledContent>
-            <StyledSectionTag>{tag}</StyledSectionTag>
-            <StyledSectionHeading>{title}</StyledSectionHeading>
-            <MarkdownComponent textHtml={body} />
+            <StyledSectionTag>{heading.tag}</StyledSectionTag>
+            <StyledSectionHeading>{heading.title}</StyledSectionHeading>
+            <MarkdownComponent textHtml={heading.body} />
             <StyledStoriesList>
               {stories.map((e, idx) => (
                 <div key={`${e.title}-${idx}`}>

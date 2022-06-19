@@ -1,4 +1,4 @@
-import { SectionBannerCenter } from "../../domain/model/SectionBannerCenter.model";
+import { ISectionTitle } from "../../domain/types/SectionTitle.model";
 import MarkdownComponent from "../Markdown";
 import {
   StyledSection,
@@ -11,10 +11,17 @@ import {
   StyledSectionBannerCernter,
 } from "./index.styles";
 
+export interface ISectionBannerCenter {
+  heading: ISectionTitle;
+}
+export interface ISectionCenterBannerComponent {
+  banner_center: ISectionBannerCenter;
+}
+
 export default function SectionCenterBannerComponent({
   banner_center,
-}: SectionBannerCenter) {
-  const { body, title, tag } = banner_center;
+}: ISectionCenterBannerComponent) {
+  const { body, title, tag } = banner_center.heading;
   return (
     <StyledSectionBannerCernter>
       <StyledSection>

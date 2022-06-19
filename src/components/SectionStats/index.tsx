@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { SectionStats } from "../../domain/model/SectionStats.model";
+import { Media } from "../../domain/model/Media.model";
+import { Stats } from "../../domain/model/Stats.model";
+import { ISectionTitle } from "../../domain/types/SectionTitle.model";
 import MarkdownComponent from "../Markdown";
 import {
   StyledSection,
@@ -16,22 +18,28 @@ import {
   StyledWrapperImage,
 } from "./index.styles";
 
+export interface ISectionStats {
+  image: Media;
+  reverse: boolean;
+  heading: ISectionTitle;
+  stats: Stats[];
+}
+export interface ISectionStatsComponent {
+  section_stats: ISectionStats;
+}
+
 export default function SectionStatsComponent({
-  body,
-  stats,
-  tag,
-  title,
-  reverse,
-  media,
-}: SectionStats) {
+  section_stats,
+}: ISectionStatsComponent) {
+  const { heading, image, reverse, stats } = section_stats;
   return (
     <StyledSection>
       <StyledContainer isReverse={reverse}>
         <StyledImageContainer>
           <StyledWrapperImage>
             <Image
-              src={media.url}
-              alt={media.alternativeText}
+              src={image.url}
+              alt={image.alternativeText}
               objectFit={"cover"}
               layout="fill"
               priority={false}
@@ -39,10 +47,10 @@ export default function SectionStatsComponent({
           </StyledWrapperImage>
         </StyledImageContainer>
         <StyledContent>
-          <StyledSectionTag>{tag}</StyledSectionTag>
-          <StyledSectionHeading>{title}</StyledSectionHeading>
+          <StyledSectionTag>{heading.tag}</StyledSectionTag>
+          <StyledSectionHeading>{heading.title}</StyledSectionHeading>
           <StyledDescription>
-            <MarkdownComponent textHtml={body} />
+            <MarkdownComponent textHtml={heading.body} />
           </StyledDescription>
           <StyledStatsList>
             {stats.map((e) => (

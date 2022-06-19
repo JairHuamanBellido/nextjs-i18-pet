@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { Language } from "../../domain/model/Language.model";
 import { HttpRestApiLanguage } from "../../infrastructure/api/HttpRestApiLanguage";
-import { StrapiModel } from "../../infrastructure/Strapi/StrapiRestApi.model";
 
 export default function LanguageContainer(): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -37,12 +36,11 @@ export default function LanguageContainer(): JSX.Element {
         >
           {isSuccess && (
             <>
-              {" "}
               <Image
                 src={`/${currentLanguage?.flag.name}`}
                 alt="2"
-                width={24}
-                height={24}
+                width={'24px'}
+                height={'24px'}
               />
               <p className="ml-3">
                 {currentLanguage?.label} ({currentLanguage?.code})
@@ -66,7 +64,7 @@ function LanguageSelector({
   languages,
 }: {
   changeLanguage(val: string): void;
-  languages: StrapiModel<Language>[];
+  languages: Language[];
 }) {
   return (
     <div className="absolute w-[320px] z-10 top-[40px] right-0 py-4 bg-white shadow-xl rounded">

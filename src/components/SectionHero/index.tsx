@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SectionHero } from "../../domain/model/SectionHero.model";
+import { Media } from "../../domain/model/Media.model";
 import { StyledSection } from "../Section/index.styles";
 import {
   StyledContainer,
@@ -8,26 +8,36 @@ import {
   StyledTitle,
 } from "./index.styles";
 
+export interface HeroComponent {
+  title: string;
+  description: string;
+  image: Media;
+}
+export interface ISectionHeroComponent {
+  section_hero: HeroComponent;
+}
+
 export default function SectionHeroComponent({
-  title,
-  description,
-  image,
-}: SectionHero) {
+  section_hero,
+}: ISectionHeroComponent) {
+  const { description, image, title } = section_hero;
   return (
     <StyledSectionHero>
       <StyledSection>
         <StyledContainer>
           <div>
             <StyledTitle>{title}</StyledTitle>
-            <StyledDescription>{description}</StyledDescription>
+            {description}
           </div>
           {image && (
             <Image
-              width={450}
-              height={450}
+              layout="intrinsic"
+              width={"450px"}
+              height={"450px"}
               objectFit={"cover"}
               src={image.url}
               alt={image.alternativeText}
+              loading="lazy"
             />
           )}
         </StyledContainer>

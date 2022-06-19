@@ -6,7 +6,7 @@ import { StyledButton } from "./index.styles";
 
 type Props = HtmlHTMLAttributes<HTMLButtonElement> & IButtonProps;
 
-export default function Button({ link, label, ...props }: Props) {
+export default function Button({ link, label }: Props) {
   const { locale } = useRouter();
   return (
     <StyledButton>

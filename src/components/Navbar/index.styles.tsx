@@ -39,7 +39,7 @@ const StyledLinkInactive = css`
     opacity: 1;
   }
 `;
-export const StyledLink = styled.p<{ isSelected: boolean }>`
+export const StyledLink = styled.li<{ isSelected: boolean }>`
   font-weight: 500;
   cursor: pointer;
   ${({ isSelected }) => (isSelected ? StyledLinkActive : StyledLinkInactive)}

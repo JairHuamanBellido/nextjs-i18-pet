@@ -1,4 +1,4 @@
-export interface StrapiBlog {
+export interface LinkStory {
   readonly title: string;
   readonly slug: string;
 }
